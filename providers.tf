@@ -18,6 +18,7 @@ data "aws_availability_zones" "available" {}
 # See workstation-external-ip.tf for additional information.
 provider "http" {}
 
+#backend
 terraform {
   backend "s3" {
     region = "us-east-1"
