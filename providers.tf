@@ -21,7 +21,7 @@ provider "http" {}
 #backend
 terraform {
   backend "s3" {
-    region = "us-east-1"
+    region = "us-west-2"
     workspace_key_prefix = "microservices"
     key    = "terraform.tfstate"
     bucket = "margterraform"
