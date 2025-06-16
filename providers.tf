@@ -17,3 +17,12 @@ data "aws_availability_zones" "available" {}
 # to open EC2 Security Group access to the Kubernetes cluster.
 # See workstation-external-ip.tf for additional information.
 provider "http" {}
+
+terraform {
+  backend "s3" {
+    region = "us-east-1"
+    workspace_key_prefix = "microservices"
+    key    = "terraform.tfstate"
+    bucket = "margterraform"
+  }
+}
