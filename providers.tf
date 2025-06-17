@@ -23,7 +23,7 @@ terraform {
   backend "s3" {
     region = "us-west-2"
     workspace_key_prefix = "microservices"
-    key    = "terraform.tfstate"
+    key    = "tsp-cluster/terraform.tfstate"
     bucket = "margterraform"
   }
 }
