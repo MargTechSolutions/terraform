@@ -3,8 +3,9 @@
 #
 
 variable "cluster-name" {
-  default = "tsp-cluster"
-  type    = string
+  description = "EKS cluster name"
+  default     = ""
+  type        = string
 }
 variable "key_pair_name" {
   default = "Slimprep"

@@ -10,7 +10,7 @@ resource "aws_vpc" "tsp-vpc" {
   cidr_block = "10.0.0.0/16"
 
   tags = tomap({
-    "Name" = "tsp-eks-node",
+    "Name"                                      = "tsp-eks-node",
     "kubernetes.io/cluster/${var.cluster-name}" = "shared",
   })
 }
@@ -24,7 +24,7 @@ resource "aws_subnet" "tsp-vpc" {
   vpc_id                  = aws_vpc.tsp-vpc.id
 
   tags = tomap({
-    "Name" = "tsp-eks-node",
+    "Name"                                      = "tsp-eks-node",
     "kubernetes.io/cluster/${var.cluster-name}" = "shared",
   })
 }

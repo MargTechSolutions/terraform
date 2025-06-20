@@ -3,7 +3,7 @@
 #
 
 provider "aws" {
-  region  = "ca-central-1"
+  region = "ca-central-1"
 }
 
 # Using these data sources allows the configuration to be
@@ -21,9 +21,9 @@ provider "http" {}
 #backend
 terraform {
   backend "s3" {
-    region = "us-west-2"
+    region               = "us-west-2"
     workspace_key_prefix = "microservices"
-    key    = "tsp-cluster/terraform.tfstate"
-    bucket = "margterraform"
+    key                  = "tsp-cluster/terraform.tfstate"
+    bucket               = "margterraform"
   }
 }

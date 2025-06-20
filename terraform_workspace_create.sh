@@ -11,3 +11,10 @@ terraform workspace new prod
 # terraform workspace select dev
 # terraform plan -var-file="env/dev.tfvars"
 # terraform apply -var-file="env/dev.tfvars"
+# terraform destroy -var-file="env/dev.tfvars"
+
+# terraform plan -var-file="env/dev.tfvars" -out=dev-plan.tfplan
+# terraform apply dev-plan.tfplan
+
+# terraform fmt          # auto-format your .tf files
+# terraform validate  
