@@ -30,7 +30,7 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: true
-          image: 050752609092.dkr.ecr.ca-central-1.amazonaws.com/frontend_image:latest
+          image: ladymarg007/frontend_microservice:latest
           ports:
           - containerPort: 8080
           readinessProbe:

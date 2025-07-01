@@ -29,7 +29,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: 050752609092.dkr.ecr.ca-central-1.amazonaws.com/adservice_image:latest
+        image: ladymarg007/adservice:latest
         ports:
         - containerPort: 9555
         env:

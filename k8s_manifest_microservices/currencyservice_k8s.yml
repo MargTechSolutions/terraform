@@ -29,7 +29,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: 050752609092.dkr.ecr.ca-central-1.amazonaws.com/currencyservice_image:latest
+        image: ladymarg007/currencyservice:latest
         ports:
         - name: grpc
           containerPort: 7000

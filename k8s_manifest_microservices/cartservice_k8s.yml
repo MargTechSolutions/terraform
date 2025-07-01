@@ -29,7 +29,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: 050752609092.dkr.ecr.ca-central-1.amazonaws.com/cartservice_image:latest
+        image: ladymarg007/cartservice:latest
         ports:
         - containerPort: 7070
         env:

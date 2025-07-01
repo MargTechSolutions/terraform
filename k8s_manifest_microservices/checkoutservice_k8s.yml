@@ -28,7 +28,7 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: true
-          image: 050752609092.dkr.ecr.ca-central-1.amazonaws.com/checkoutservice_image:latest
+          image: ladymarg007/checkoutservice:latest
           ports:
           - containerPort: 5050
           readinessProbe:
