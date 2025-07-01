@@ -11,7 +11,7 @@ variable "key_pair_name" {
   default = "Slimprep"
 }
 variable "eks_node_instance_type" {
-  default = "t2.micro"
+  default = "t3.medium"
 }
 
 variable "environment" {
