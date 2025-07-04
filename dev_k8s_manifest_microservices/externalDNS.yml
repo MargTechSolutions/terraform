@@ -1,4 +1,10 @@
-# ---------------------------------------------------------------------------
+# kubectl create secret generic aws-credentials \
+#   -n kube-system \
+#   --from-literal=access_key=<YOUR_ACCESS_KEY_ID> \
+#   --from-literal=secret_key=<YOUR_SECRET_ACCESS_KEY>
+
+#then apply
+#  ---------------------------------------------------------------------------
 # ExternalDNS ServiceAccount & RBAC
 # ---------------------------------------------------------------------------
 
@@ -36,11 +42,13 @@ subjects:
   name: external-dns
   namespace: kube-system
 
+
 ---
 # ---------------------------------------------------------------------------
 # ExternalDNS Deployment (Route53)
 # ---------------------------------------------------------------------------
 
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -65,18 +73,38 @@ spec:
           args:
             - --source=service
             - --source=ingress
-            - --domain-filter=ladymarg.com                  # Replace with your actual hosted zone
+            - --domain-filter=ladymarg.com
             - --provider=aws
             - --policy=upsert-only
             - --registry=txt
-            - --txt-owner-id=tsp-cluster-dev     # Substitute with your cluster/workspace/env
+            - --txt-owner-id=tsp-cluster-dev
             - --log-level=info
           env:
             - name: AWS_REGION
-              value: ca-central-1                           # Replace with your AWS region
+              value: ca-central-1
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-credentials
+                  key: access_key
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: aws-credentials
+                  key: secret_key
 
 
-#kubectl logs -n kube-system -l app=external-dns
+
+
 #kubectl get all -n kube-system
+#kubectl apply -f externalDNS.yml
 #kubectl rollout restart deployment external-dns -n kube-system
+#kubectl logs -n kube-system -l app=external-dns
+#kubectl logs -l app=external-dns -n kube-system --tail=100 -f      #to watch logs
+
+
+
+
+
+
 #kubectl delete pod -n kube-system -l app=external-dns
