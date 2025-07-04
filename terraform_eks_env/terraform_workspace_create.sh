@@ -16,5 +16,10 @@ terraform workspace new prod
 # terraform plan -var-file="env/dev.tfvars" -out=dev-plan.tfplan
 # terraform apply dev-plan.tfplan
 
+#aws eks update-kubeconfig --region ca-central-1 --name tsp-cluster-dev
+#kubectl get all
+
+#kubectl get nodes
+
 # terraform fmt          # auto-format your .tf files
 # terraform validate  
