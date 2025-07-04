@@ -129,7 +129,7 @@ metadata:
     app: frontend
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-healthcheck-path: /
-    external-dns.alpha.kubernetes.io/hostname: frontend.dev.ladymarg.com.
+    external-dns.alpha.kubernetes.io/hostname: dev.frontend.ladymarg.com.
 spec:
   type: LoadBalancer
   selector:
