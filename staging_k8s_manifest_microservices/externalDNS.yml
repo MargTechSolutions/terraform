@@ -1,0 +1,49 @@
+
+#To install external DNS for lb to map to DNS via helm or yml 
+# helm repo add bitnami https://charts.bitnami.com/bitnami
+# helm upgrade --install external-dns bitnami/external-dns \
+#   --set provider=aws \
+#   --set aws.zoneType=public \
+#   --set txtOwnerId=${cluster_name} \
+#   --set domainFilters={ladymarg.com} \
+#   --set policy=upsert-only \
+#   --set serviceAccount.create=true \
+#   --set serviceAccount.name=external-dns
+
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: external-dns
+  namespace: kube-system
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: external-dns
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: external-dns
+  template:
+    metadata:
+      labels:
+        app: external-dns
+    spec:
+      serviceAccountName: external-dns
+      containers:
+        - name: external-dns
+          image: registry.k8s.io/external-dns/external-dns:v0.14.0
+          args:
+            - --source=service
+            - --source=ingress
+            - --domain-filter=ladymarg.com              # Change to your hosted zone
+            - --provider=aws
+            - --policy=upsert-only
+            - --registry=txt
+            - --txt-owner-id=tsp-cluster-${environment}         # Optional: use cluster name or workspace
+          env:
+            - name: AWS_REGION
+              value: ca-central-1                           # Change to your region

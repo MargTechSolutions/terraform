@@ -25,7 +25,8 @@ resource "aws_subnet" "tsp-vpc" {
 
   tags = tomap({
     "Name"                                      = "tsp-eks-node-${count.index}",
-    "kubernetes.io/cluster/${var.cluster-name != "" ? var.cluster-name : "tsp-cluster-${terraform.workspace}"}" = "shared",
+    #"kubernetes.io/cluster/${var.cluster-name != "" ? var.cluster-name : "tsp-cluster-${terraform.workspace}"}" = "shared" #use this or locals
+     "kubernetes.io/cluster/${local.resolved_cluster_name}" = "shared"
     "kubernetes.io/role/elb"                    = "1"  # Needed for public ELB access
   })
 }

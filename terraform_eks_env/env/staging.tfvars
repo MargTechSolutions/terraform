@@ -1,3 +1,3 @@
 environment = "staging"
-cluster_name = var.cluster-name
+cluster_name = "tsp-cluster-staging"
 profile = "tsp-cluster-staging-cluster"

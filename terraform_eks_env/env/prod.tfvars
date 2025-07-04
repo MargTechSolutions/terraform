@@ -1,4 +1,4 @@
 
 environment = "prod"
-cluster_name = var.cluster-name
+cluster_name = "tsp-cluster-prod"
 profile = "tsp-cluster-prod-cluster"
