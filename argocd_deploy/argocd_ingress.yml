@@ -1,0 +1,30 @@
+#run only after apply argocd terraform script 
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-server-ingress
+  namespace: argocd
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-dns
+    external-dns.alpha.kubernetes.io/hostname: prod.argocd.ladymarg.com
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - prod.argocd.ladymarg.com
+      secretName: argocd-tls
+  rules:
+    - host: prod.argocd.ladymarg.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 443
