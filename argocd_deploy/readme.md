@@ -36,3 +36,8 @@
 
 ```kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo```
 # aP5Obpilsjpf9jjF
+
+
+# Then run 
+```kubectl apply argocd_ingress.yml``` #to secure the site 
+```kubectl apply argocd_microservices_cd.yml``` #to configure the continous deployment view
